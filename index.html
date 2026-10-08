@@ -3,25 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Payment Dashboard</title>
+    <title>Executive Payment Management</title>
     <style>
       :root {
-        --bg: #e8ecef;
-        --panel: #f2f4f5;
-        --card: #f8f8f8;
-        --soft: #eef2f5;
-        --line: #d6dfe6;
-        --text: #1f2b3a;
-        --muted: #5d6975;
-        --navy: #1f2d4a;
-        --navy-soft: #e7eef9;
-        --blue: #2d5d9c;
-        --green: #43a35f;
-        --green-soft: #dff4e8;
-        --orange: #e3a23a;
-        --orange-soft: #fff4dd;
-        --red: #d75555;
-        --red-soft: #fdeae8;
+        --bg: #f5f6f8;
+        --bg-soft: #fafbfc;
+        --white: #ffffff;
+        --line: #d8dce2;
+        --text-primary: #2c3e50;
+        --text-secondary: #7a8896;
+        --text-light: #9ca5b0;
+        --accent-blue: #3b5998;
+        --accent-green: #2d8659;
+        --accent-orange: #d9923f;
+        --accent-red: #c64545;
+        --blue-light: #ecf0f7;
+        --green-light: #e8f5f1;
+        --orange-light: #faf1e6;
+        --red-light: #fae8e8;
+        --shadow-sm: 0 2px 6px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 8px 20px rgba(0,0,0,0.1);
       }
 
       * { box-sizing: border-box; }
@@ -30,9 +32,10 @@
 
       body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         background: var(--bg);
-        color: var(--text);
+        color: var(--text-primary);
+        line-height: 1.5;
       }
 
       button, input, select, textarea {
@@ -40,29 +43,30 @@
       }
 
       .container {
-        max-width: 1280px;
+        max-width: 1320px;
         margin: 0 auto;
-        padding: 22px 18px 80px;
+        padding: 20px 18px 80px;
       }
 
+      /* HEADER */
       .topbar {
-        background: rgba(255,255,255,0.78);
+        background: var(--white);
         border-bottom: 1px solid var(--line);
         position: sticky;
         top: 0;
         z-index: 50;
-        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow-sm);
       }
 
       .nav-inner {
-        max-width: 1280px;
+        max-width: 1320px;
         margin: 0 auto;
-        padding: 16px 18px;
+        padding: 14px 18px;
       }
 
       .nav-list {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         justify-content: center;
         flex-wrap: wrap;
         list-style: none;
@@ -73,22 +77,24 @@
       .nav-btn {
         border: 1px solid transparent;
         background: transparent;
-        color: var(--muted);
-        border-radius: 999px;
-        padding: 10px 16px;
-        font-weight: 700;
+        color: var(--text-secondary);
+        border-radius: 8px;
+        padding: 9px 14px;
+        font-weight: 600;
+        font-size: 0.9rem;
         cursor: pointer;
         transition: all 0.2s ease;
       }
 
       .nav-btn:hover {
-        background: var(--navy-soft);
-        color: var(--navy);
+        background: var(--bg);
+        color: var(--accent-blue);
       }
 
       .nav-btn.active {
-        background: var(--navy);
-        color: #fff;
+        background: var(--accent-blue);
+        color: white;
+        box-shadow: var(--shadow-sm);
       }
 
       .section {
@@ -99,75 +105,72 @@
         display: block;
       }
 
-      .panel {
-        background: rgba(255,255,255,0.4);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 30px 22px;
-        box-shadow: 0 8px 18px rgba(0,0,0,0.04);
-      }
-
+      /* HERO */
       .hero {
-        background: linear-gradient(135deg, #f6f6f8 0%, #edf2f7 100%);
+        background: linear-gradient(135deg, #f8f9fb 0%, #f0f3f7 100%);
         border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 26px 28px;
-        margin-bottom: 20px;
+        border-radius: 12px;
+        padding: 24px 22px;
+        margin-bottom: 18px;
+        box-shadow: var(--shadow-sm);
       }
 
       .hero h1 {
-        margin: 0 0 8px;
-        font-size: clamp(2rem, 2.8vw, 3rem);
-        font-weight: 800;
-        color: var(--navy);
+        margin: 0 0 6px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--text-primary);
       }
 
       .hero p {
         margin: 0;
-        color: var(--muted);
-        font-size: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
       }
 
+      /* SUMMARY */
       .summary-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 18px;
-        margin-bottom: 22px;
+        gap: 14px;
+        margin-bottom: 18px;
       }
 
       .summary-card {
-        background: white;
+        background: var(--white);
         border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 18px 20px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        border-radius: 10px;
+        padding: 16px 18px;
+        box-shadow: var(--shadow-sm);
       }
 
       .summary-card .label {
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
-        font-weight: 800;
-        letter-spacing: 0.06em;
-        color: var(--muted);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--text-light);
+        margin-bottom: 8px;
       }
 
       .summary-card .amount {
-        margin-top: 10px;
-        font-size: clamp(1.8rem, 2vw, 2.4rem);
-        font-weight: 800;
-        letter-spacing: -0.04em;
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
       }
 
-      .summary-card.primary .amount { color: var(--navy); }
-      .summary-card.success .amount { color: var(--green); }
-      .summary-card.warning .amount { color: var(--orange); }
+      .summary-card.primary .amount { color: var(--accent-blue); }
+      .summary-card.success .amount { color: var(--accent-green); }
+      .summary-card.warning .amount { color: var(--accent-orange); }
 
+      /* PROGRESS */
       .progress-wrap {
-        background: white;
+        background: var(--white);
         border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 22px 20px;
-        margin-bottom: 24px;
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-sm);
       }
 
       .progress-head {
@@ -175,15 +178,15 @@
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        margin-bottom: 18px;
-        font-size: 1.05rem;
-        font-weight: 800;
-        color: var(--navy);
+        margin-bottom: 14px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text-primary);
       }
 
       .progress-bar {
-        height: 12px;
-        background: #edf1f4;
+        height: 10px;
+        background: #e8eef4;
         border-radius: 999px;
         overflow: hidden;
       }
@@ -191,117 +194,122 @@
       .progress-fill {
         height: 100%;
         border-radius: inherit;
-        background: linear-gradient(90deg, var(--green), var(--orange));
+        background: linear-gradient(90deg, var(--accent-green), var(--accent-orange));
       }
 
       .progress-meta {
-        margin-top: 12px;
+        margin-top: 10px;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 10px;
-        color: var(--muted);
-        font-weight: 700;
+        gap: 8px;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        font-weight: 600;
       }
 
+      /* PAGE TITLE */
       .page-title {
-        margin: 12px 0 20px;
-        font-size: clamp(2rem, 2.5vw, 2.8rem);
-        font-weight: 800;
-        color: var(--navy);
+        margin: 8px 0 16px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text-primary);
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 8px;
       }
 
       .page-title .icon {
-        color: var(--navy);
+        color: var(--accent-blue);
       }
 
       .section-divider {
-        border-top: 3px solid var(--blue);
-        margin: 0 0 22px;
+        border-top: 2px solid var(--accent-blue);
+        margin: 0 0 18px;
       }
 
+      /* PAYMENT CARDS */
       .payments-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 22px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 16px;
+        margin-bottom: 20px;
       }
 
       .payment-card {
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.03);
-        padding: 20px 18px 18px;
+        background: var(--white);
+        border: 1.5px solid var(--line);
+        border-radius: 11px;
+        box-shadow: var(--shadow-sm);
+        padding: 18px 16px 16px;
       }
 
       .payment-card.paid {
-        border: 2px solid #6abf8d;
-        background: #eefaf3;
+        border-color: #a8d8b8;
+        background: linear-gradient(135deg, rgba(45, 134, 89, 0.02) 0%, rgba(232, 245, 241, 0.4) 100%);
       }
 
       .payment-card.pending {
-        border: 2px solid #e8c66a;
-        background: #fffaf0;
+        border-color: #e8d4a0;
+        background: linear-gradient(135deg, rgba(217, 146, 63, 0.02) 0%, rgba(250, 241, 230, 0.4) 100%);
       }
 
       .status-row {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 14px;
-        font-weight: 800;
-        color: var(--navy);
-        font-size: 1.05rem;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-weight: 700;
+        color: var(--text-primary);
+        font-size: 0.9rem;
       }
 
       .status-dot {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         display: inline-block;
       }
 
-      .status-dot.paid { background: var(--green); }
-      .status-dot.pending { background: var(--orange); }
+      .status-dot.paid { background: var(--accent-green); }
+      .status-dot.pending { background: var(--accent-orange); }
 
       .amount-large {
-        font-size: clamp(2rem, 2.5vw, 2.4rem);
-        font-weight: 800;
-        letter-spacing: -0.04em;
-        color: var(--navy);
-        margin-bottom: 14px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        margin-bottom: 12px;
       }
 
       .detail-list {
         display: grid;
-        gap: 10px;
+        gap: 8px;
+        margin-bottom: 14px;
       }
 
       .detail-row {
         display: flex;
         justify-content: space-between;
-        gap: 12px;
-        font-size: 1rem;
+        gap: 10px;
+        font-size: 0.9rem;
       }
 
       .detail-row .label {
-        color: var(--muted);
+        color: var(--text-secondary);
         font-weight: 700;
       }
 
       .detail-row .value {
-        font-weight: 800;
-        color: var(--navy);
+        font-weight: 700;
+        color: var(--text-primary);
         text-align: right;
       }
 
       .payment-footer {
-        margin-top: 16px;
-        padding-top: 16px;
-        border-top: 1px solid rgba(0,0,0,0.08);
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(0,0,0,0.06);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -309,235 +317,281 @@
       }
 
       .installment {
-        color: var(--muted);
+        color: var(--text-light);
         font-weight: 700;
+        font-size: 0.85rem;
       }
 
       .card-actions {
         display: flex;
-        gap: 8px;
+        gap: 6px;
       }
 
       .mini-btn {
         border: none;
         border-radius: 6px;
-        padding: 7px 10px;
+        padding: 6px 9px;
         font-weight: 700;
         cursor: pointer;
+        font-size: 0.8rem;
       }
 
       .mini-btn.edit {
-        background: var(--navy-soft);
-        color: var(--navy);
+        background: var(--blue-light);
+        color: var(--accent-blue);
       }
 
       .mini-btn.delete {
-        background: var(--red-soft);
-        color: var(--red);
+        background: var(--red-light);
+        color: var(--accent-red);
       }
 
+      .empty-message {
+        text-align: center;
+        padding: 30px 20px;
+        color: var(--text-secondary);
+      }
+
+      .empty-icon {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+      }
+
+      .empty-text {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      /* FORMS */
       .form-panel {
-        background: white;
+        background: var(--white);
         border: 1px solid var(--line);
-        border-radius: 16px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.03);
-        padding: 28px 22px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+        padding: 24px 20px;
       }
 
       .section-head {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin: 0 0 22px;
-        font-size: clamp(2rem, 2.5vw, 2.8rem);
-        font-weight: 800;
-        color: var(--navy);
+        gap: 8px;
+        margin: 0 0 20px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text-primary);
       }
 
       .form-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
       }
 
       .form-group {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
       }
 
       .form-group label {
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
-        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        font-weight: 700;
         text-transform: uppercase;
-        color: var(--muted);
+        color: var(--text-secondary);
       }
 
       .form-group input,
       .form-group select {
         border: 1px solid var(--line);
-        background: #f9fafb;
-        border-radius: 10px;
-        padding: 12px 13px;
-        color: var(--text);
+        background: var(--bg-soft);
+        border-radius: 8px;
+        padding: 10px 11px;
+        color: var(--text-primary);
+        font-size: 0.9rem;
       }
 
       .form-group input:focus,
       .form-group select:focus {
         outline: none;
-        border-color: var(--blue);
-        box-shadow: 0 0 0 3px rgba(45,93,156,0.12);
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px var(--blue-light);
       }
 
       .auto-box {
-        min-height: 48px;
+        min-height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 10px;
-        border: 1px dashed var(--blue);
-        background: var(--navy-soft);
-        color: var(--navy);
-        font-weight: 800;
+        border-radius: 8px;
+        border: 1px dashed var(--accent-blue);
+        background: var(--blue-light);
+        color: var(--accent-blue);
+        font-weight: 700;
+        font-size: 0.9rem;
       }
 
       .btn-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 24px;
+        gap: 10px;
+        margin-top: 18px;
       }
 
       .btn {
         border: none;
-        border-radius: 12px;
-        padding: 12px 18px;
-        font-size: 1rem;
-        font-weight: 800;
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        font-weight: 700;
         cursor: pointer;
+        transition: all 0.2s ease;
       }
 
       .btn-primary {
-        background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+        background: var(--accent-blue);
         color: white;
+      }
+
+      .btn-primary:hover {
+        background: #2a4a7a;
+        box-shadow: var(--shadow-md);
       }
 
       .btn-secondary {
-        background: #edf2f7;
-        color: var(--navy);
+        background: var(--bg);
+        color: var(--text-primary);
         border: 1px solid var(--line);
+      }
+
+      .btn-secondary:hover {
+        background: white;
+        border-color: var(--accent-blue);
       }
 
       .btn-danger {
-        background: var(--red);
+        background: var(--accent-red);
         color: white;
       }
 
+      .btn-danger:hover {
+        background: #a83838;
+      }
+
+      /* TOOLS */
       .tool-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
       }
 
       .tool-card {
-        background: white;
+        background: var(--white);
         border: 1px solid var(--line);
-        border-radius: 16px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.03);
-        padding: 18px 20px;
+        border-radius: 11px;
+        box-shadow: var(--shadow-sm);
+        padding: 16px 18px;
       }
 
       .tool-card h3 {
-        margin: 0 0 10px;
-        font-size: 1.2rem;
+        margin: 0 0 8px;
+        font-size: 0.95rem;
+        font-weight: 700;
       }
 
       .tool-card p {
-        margin: 0 0 16px;
-        color: var(--muted);
+        margin: 0 0 12px;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
       }
 
       .tool-icon {
-        width: 46px;
-        height: 46px;
+        width: 40px;
+        height: 40px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 12px;
-        background: var(--navy-soft);
-        margin-bottom: 12px;
-        font-size: 1.5rem;
+        border-radius: 8px;
+        background: var(--blue-light);
+        margin-bottom: 10px;
+        font-size: 1.3rem;
       }
 
+      /* REMINDERS */
       .reminder-box {
-        background: white;
+        background: var(--white);
         border: 1px solid var(--line);
-        border-radius: 16px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.03);
-        padding: 24px 20px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+        padding: 20px 18px;
       }
 
       .reminder-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 16px;
-        margin-bottom: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-bottom: 14px;
       }
 
       .reminder-list {
         display: grid;
-        gap: 12px;
+        gap: 10px;
       }
 
       .reminder-item {
-        background: #f8fafb;
+        background: var(--bg-soft);
         border: 1px solid var(--line);
-        border-left: 4px solid var(--orange);
-        border-radius: 10px;
-        padding: 14px 16px;
+        border-left: 3px solid var(--accent-orange);
+        border-radius: 8px;
+        padding: 12px 14px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
       }
 
       .reminder-date {
-        font-weight: 800;
-        color: var(--navy);
+        font-weight: 700;
+        color: var(--text-primary);
+        font-size: 0.9rem;
       }
 
       .reminder-note {
-        color: var(--muted);
-        font-weight: 700;
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.85rem;
       }
 
       .remove-reminder {
         border: none;
-        background: var(--red-soft);
-        color: var(--red);
-        border-radius: 8px;
-        padding: 8px 10px;
+        background: var(--red-light);
+        color: var(--accent-red);
+        border-radius: 6px;
+        padding: 6px 8px;
         cursor: pointer;
         font-weight: 700;
+        font-size: 0.8rem;
       }
 
+      /* TOAST */
       .toast {
         position: fixed;
-        right: 20px;
-        bottom: 24px;
-        background: var(--green);
+        right: 16px;
+        bottom: 20px;
+        background: var(--accent-green);
         color: white;
-        padding: 12px 16px;
-        border-radius: 10px;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+        padding: 11px 14px;
+        border-radius: 8px;
+        box-shadow: var(--shadow-lg);
         font-weight: 700;
+        font-size: 0.85rem;
         z-index: 200;
         animation: slideIn 0.2s ease;
       }
 
       .toast.error {
-        background: var(--red);
+        background: var(--accent-red);
       }
 
       @keyframes slideIn {
@@ -548,6 +602,8 @@
       @media (max-width: 760px) {
         .payments-grid { grid-template-columns: 1fr; }
         .detail-row { flex-direction: column; align-items: flex-start; }
+        .page-title { font-size: 1.2rem; }
+        .amount-large { font-size: 1.6rem; }
       }
     </style>
   </head>
@@ -555,10 +611,10 @@
     <header class="topbar">
       <div class="nav-inner">
         <ul class="nav-list">
-          <li><button class="nav-btn active" data-target="home">🏠 Home</button></li>
+          <li><button class="nav-btn active" data-target="home">🏠 Dashboard</button></li>
           <li><button class="nav-btn" data-target="pending">⏳ Pending</button></li>
           <li><button class="nav-btn" data-target="paid">✅ Paid</button></li>
-          <li><button class="nav-btn" data-target="add">➕ Add Payment</button></li>
+          <li><button class="nav-btn" data-target="add">➕ Add</button></li>
           <li><button class="nav-btn" data-target="reminders">📅 Reminders</button></li>
           <li><button class="nav-btn" data-target="tools">🛠️ Tools</button></li>
         </ul>
@@ -568,18 +624,18 @@
     <div class="container">
       <section id="home" class="section active">
         <div class="hero">
-          <h1>Welcome back</h1>
-          <p>Your payment dashboard is ready. Monitor your balance, track each installment and keep your schedule in order.</p>
+          <h1>Welcome to your Payment Dashboard</h1>
+          <p>Monitor your loan status, track installments, and stay on top of your financial commitments.</p>
         </div>
 
         <div class="summary-grid">
           <div class="summary-card primary">
-            <div class="label">💼 Total debt</div>
+            <div class="label">💼 Total Debt</div>
             <div class="amount" id="totalDebt">₡600,000.00</div>
           </div>
 
           <div class="summary-card success">
-            <div class="label">✅ Already paid</div>
+            <div class="label">✅ Paid</div>
             <div class="amount" id="totalPaid">₡40,000.00</div>
           </div>
 
@@ -591,7 +647,7 @@
 
         <div class="progress-wrap">
           <div class="progress-head">
-            <span>📈 Payment progress</span>
+            <span>📈 Overall Progress</span>
             <span id="progressPercent">6.67%</span>
           </div>
           <div class="progress-bar">
@@ -605,20 +661,20 @@
       </section>
 
       <section id="pending" class="section">
-        <div class="page-title"><span class="icon">⏳</span> Pending payments</div>
+        <div class="page-title"><span class="icon">⏳</span> Pending Payments</div>
         <div class="section-divider"></div>
         <div id="pendingList" class="payments-grid"></div>
       </section>
 
       <section id="paid" class="section">
-        <div class="page-title"><span class="icon">✅</span> Paid payments</div>
+        <div class="page-title"><span class="icon">✅</span> Payment History</div>
         <div class="section-divider"></div>
         <div id="paidList" class="payments-grid"></div>
       </section>
 
       <section id="add" class="section">
         <div class="form-panel">
-          <div class="section-head"><span>➕</span> Add new payment</div>
+          <div class="section-head"><span>➕</span> Register New Payment</div>
 
           <form id="paymentForm">
             <div class="form-grid">
@@ -628,12 +684,12 @@
               </div>
 
               <div class="form-group">
-                <label for="operationNumber">Operation Number</label>
-                <input type="text" id="operationNumber" placeholder="e.g. 4626" required>
+                <label for="operationNumber">Operation #</label>
+                <input type="text" id="operationNumber" placeholder="4626" required>
               </div>
 
               <div class="form-group">
-                <label for="paymentType">Type of Payment</label>
+                <label for="paymentType">Payment Method</label>
                 <select id="paymentType" required>
                   <option value="">Select</option>
                   <option value="Transferencia">Transferencia</option>
@@ -663,21 +719,21 @@
               </div>
 
               <div class="form-group">
-                <label>Payment Number</label>
+                <label>Payment #</label>
                 <div class="auto-box" id="paymentNumberBox">Payment #3</div>
               </div>
             </div>
 
             <div class="btn-row">
-              <button type="submit" class="btn btn-primary">💾 Save payment</button>
-              <button type="reset" class="btn btn-secondary">🔄 Clear form</button>
+              <button type="submit" class="btn btn-primary">💾 Save</button>
+              <button type="reset" class="btn btn-secondary">🔄 Reset</button>
             </div>
           </form>
         </div>
       </section>
 
       <section id="reminders" class="section">
-        <div class="page-title"><span class="icon">📅</span> Reminder summary</div>
+        <div class="page-title"><span class="icon">📅</span> Reminders</div>
         <div class="section-divider"></div>
 
         <div class="reminder-box">
@@ -690,54 +746,54 @@
             <div class="form-group">
               <label for="reminderPayment">Payment</label>
               <select id="reminderPayment">
-                <option value="">Select payment</option>
+                <option value="">Select</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="reminderNote">Reminder Note</label>
-              <input type="text" id="reminderNote" placeholder="e.g. Contact finance office">
+              <label for="reminderNote">Note</label>
+              <input type="text" id="reminderNote" placeholder="e.g. Contact office">
             </div>
           </div>
-          <button type="button" class="btn btn-primary" id="saveReminderBtn">➕ Add reminder</button>
+          <button type="button" class="btn btn-primary" id="saveReminderBtn">➕ Add</button>
 
-          <div style="margin-top: 22px;">
+          <div style="margin-top: 16px;">
             <div id="reminderList" class="reminder-list"></div>
           </div>
         </div>
       </section>
 
       <section id="tools" class="section">
-        <div class="page-title"><span class="icon">🛠️</span> Tools</div>
+        <div class="page-title"><span class="icon">🛠️</span> Tools & Export</div>
         <div class="section-divider"></div>
 
         <div class="tool-grid">
           <div class="tool-card">
             <div class="tool-icon">📤</div>
-            <h3>Export to Excel</h3>
-            <p>Download all payment entries in a spreadsheet-ready CSV file.</p>
-            <button class="btn btn-primary" type="button" id="exportCsvBtn">Export CSV</button>
+            <h3>Export CSV</h3>
+            <p>Download payments as Excel-compatible spreadsheet.</p>
+            <button class="btn btn-primary" type="button" id="exportCsvBtn">Export</button>
           </div>
 
           <div class="tool-card">
             <div class="tool-icon">🖨️</div>
-            <h3>Print / PDF</h3>
-            <p>Generate a print-friendly report for your payment records.</p>
-            <button class="btn btn-primary" type="button" id="printBtn">Print / PDF</button>
+            <h3>Print Report</h3>
+            <p>Generate a print-friendly PDF of all records.</p>
+            <button class="btn btn-primary" type="button" id="printBtn">Print</button>
           </div>
 
           <div class="tool-card">
             <div class="tool-icon">✏️</div>
-            <h3>Edit payment</h3>
-            <p>Jump to the payment list to update existing records.</p>
-            <button class="btn btn-secondary" type="button" id="editBtn">Go to payments</button>
+            <h3>Manage Payments</h3>
+            <p>Edit or remove existing payment entries.</p>
+            <button class="btn btn-secondary" type="button" id="editBtn">Manage</button>
           </div>
 
           <div class="tool-card">
             <div class="tool-icon">🗑️</div>
-            <h3>Reset all data</h3>
-            <p>Clear all payment data. Use only if you want to restart.</p>
-            <button class="btn btn-danger" type="button" id="clearBtn">Clear all data</button>
+            <h3>Reset Data</h3>
+            <p>Clear all entries and start fresh (use with caution).</p>
+            <button class="btn btn-danger" type="button" id="clearBtn">Clear</button>
           </div>
         </div>
       </section>
@@ -807,7 +863,7 @@
 
         const pendingList = document.getElementById('pendingList');
         if (!pending.length) {
-          pendingList.innerHTML = '<div class="empty-message"><div style="font-size: 2rem; margin-bottom: 10px;">📭</div><div>There are no pending payments.</div></div>';
+          pendingList.innerHTML = '<div class="empty-message"><div class="empty-icon">📭</div><div class="empty-text">No pending payments</div></div>';
         } else {
           pendingList.innerHTML = pending.map(p => `
             <div class="payment-card pending">
@@ -819,13 +875,13 @@
               <div class="detail-list">
                 <div class="detail-row"><span class="label">Operation:</span><span class="value">${p.operationNumber}</span></div>
                 <div class="detail-row"><span class="label">Due Date:</span><span class="value">${formatDate(p.dueDate)}</span></div>
-                <div class="detail-row"><span class="label">Payment Method:</span><span class="value">${p.type}</span></div>
+                <div class="detail-row"><span class="label">Method:</span><span class="value">${p.type}</span></div>
               </div>
               <div class="payment-footer">
                 <span class="installment">Installment #${p.id}</span>
                 <div class="card-actions">
-                  <button class="mini-btn edit" data-edit="${p.id}">✏️ Edit</button>
-                  <button class="mini-btn delete" data-delete="${p.id}">🗑 Delete</button>
+                  <button class="mini-btn edit" data-edit="${p.id}">✏️</button>
+                  <button class="mini-btn delete" data-delete="${p.id}">🗑</button>
                 </div>
               </div>
             </div>
@@ -834,7 +890,7 @@
 
         const paidList = document.getElementById('paidList');
         if (!paid.length) {
-          paidList.innerHTML = '<div class="empty-message"><div style="font-size: 2rem; margin-bottom: 10px;">📭</div><div>No payments have been made yet.</div></div>';
+          paidList.innerHTML = '<div class="empty-message"><div class="empty-icon">📭</div><div class="empty-text">No completed payments yet</div></div>';
         } else {
           paidList.innerHTML = paid.map(p => `
             <div class="payment-card paid">
@@ -845,14 +901,14 @@
               <div class="amount-large">${formatCurrency(p.amount)}</div>
               <div class="detail-list">
                 <div class="detail-row"><span class="label">Operation:</span><span class="value">${p.operationNumber}</span></div>
-                <div class="detail-row"><span class="label">Payment Date:</span><span class="value">${formatDate(p.date)}</span></div>
-                <div class="detail-row"><span class="label">Payment Method:</span><span class="value">${p.type}</span></div>
+                <div class="detail-row"><span class="label">Date:</span><span class="value">${formatDate(p.date)}</span></div>
+                <div class="detail-row"><span class="label">Method:</span><span class="value">${p.type}</span></div>
               </div>
               <div class="payment-footer">
                 <span class="installment">Installment #${p.id}</span>
                 <div class="card-actions">
-                  <button class="mini-btn edit" data-edit="${p.id}">✏️ Edit</button>
-                  <button class="mini-btn delete" data-delete="${p.id}">🗑 Delete</button>
+                  <button class="mini-btn edit" data-edit="${p.id}">✏️</button>
+                  <button class="mini-btn delete" data-delete="${p.id}">🗑</button>
                 </div>
               </div>
             </div>
@@ -872,7 +928,7 @@
             updateDashboard();
             renderPaymentLists();
             renderReminderOptions();
-            showToast('Payment deleted successfully');
+            showToast('Payment deleted');
           });
         });
 
@@ -901,14 +957,14 @@
       function renderReminderOptions() {
         const select = document.getElementById('reminderPayment');
         const options = payments.map(p => `<option value="${p.id}">Payment #${p.id} - ${formatCurrency(p.amount)}</option>`).join('');
-        select.innerHTML = `<option value="">Select payment</option>${options}`;
+        select.innerHTML = `<option value="">Select</option>${options}`;
       }
 
       function renderReminders() {
         const list = document.getElementById('reminderList');
 
         if (!reminders.length) {
-          list.innerHTML = '<div class="empty-message"><div style="font-size: 2rem; margin-bottom: 10px;">📭</div><div>No reminders configured.</div></div>';
+          list.innerHTML = '<div class="empty-message"><div class="empty-icon">📭</div><div class="empty-text">No reminders set</div></div>';
           return;
         }
 
@@ -920,7 +976,7 @@
             <div class="reminder-item">
               <div>
                 <div class="reminder-date">📅 ${formatDate(r.date)}</div>
-                <div class="reminder-note">${r.note || 'Payment reminder'} • Payment #${r.paymentId} (${payment ? formatCurrency(payment.amount) : '—'})</div>
+                <div class="reminder-note">${r.note || 'Reminder'} • Payment #${r.paymentId}</div>
               </div>
               <button class="remove-reminder" data-reminder-id="${r.id}">Remove</button>
             </div>
@@ -957,7 +1013,7 @@
         const status = document.getElementById('statusSelect').value;
 
         if (!amount || !operationNumber || !type || !date || !dueDate) {
-          showToast('Please fill in all fields', true);
+          showToast('Fill all fields', true);
           return;
         }
 
@@ -966,10 +1022,10 @@
 
         if (editId) {
           payments = payments.map(p => p.id === editId ? { ...p, ...payload } : p);
-          showToast('Payment updated successfully');
+          showToast('Payment updated');
         } else {
           payments.push({ id: payments.length + 1, ...payload });
-          showToast('Payment saved successfully');
+          showToast('Payment saved');
         }
 
         savePayments();
@@ -985,10 +1041,10 @@
       document.getElementById('saveReminderBtn').addEventListener('click', () => {
         const date = document.getElementById('reminderDate').value;
         const paymentId = document.getElementById('reminderPayment').value;
-        const note = document.getElementById('reminderNote').value.trim() || 'Payment reminder';
+        const note = document.getElementById('reminderNote').value.trim() || 'Reminder';
 
         if (!date || !paymentId) {
-          showToast('Please select a reminder date and payment', true);
+          showToast('Select date and payment', true);
           return;
         }
 
@@ -1012,7 +1068,7 @@
       document.getElementById('editBtn').addEventListener('click', () => document.querySelector('[data-target="pending"]').click());
 
       document.getElementById('clearBtn').addEventListener('click', () => {
-        const ok = confirm('Are you sure you want to delete all data?');
+        const ok = confirm('Delete all data?');
         if (!ok) return;
         payments = [];
         reminders = [];
@@ -1066,7 +1122,7 @@
         a.click();
         URL.revokeObjectURL(url);
 
-        showToast('CSV exported successfully');
+        showToast('CSV exported');
       }
 
       document.getElementById('paymentDate').value = new Date().toISOString().split('T')[0];
